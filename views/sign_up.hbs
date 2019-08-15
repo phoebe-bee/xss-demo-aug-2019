@@ -1,0 +1,22 @@
+
+
+<h1>Welcome! Please sign up to view the forum.</h1>
+<p>Already have an account? <a href="/login">Log in</a></p>
+<form method="post" action="/signup">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input required name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="usernameInput">Username</label>
+        <input required name="username" type="text" class="form-control" id="usernameInput" aria-describedby="usernameHelp" placeholder="Choose a cool username">
+        <small id="usernameHelp" class="form-text text-muted">Choose carefully - this'll be attached to whatever you post!</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input required name="password" type="password" class="form-control" id="exampleInputPassword1" aria-describedby="passwordHelp" placeholder="Choose a secure password">
+        <small id="passwordHelp" class="form-text text-muted">Your password will be stored as a salted hash for your protection.</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign Up!</button>
+</form>

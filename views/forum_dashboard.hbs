@@ -1,0 +1,29 @@
+<h1>Welcome to Phoebe's Phorum!</h1>
+<h3>Latest posts</h3>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        {{#if user.isAdmin}}
+            <th scope="col">Delete</th>
+        {{/if}}
+    </tr>
+    </thead>
+    <tbody>
+    {{#each posts}}
+    <tr>
+        <td>{{this.id}}</td>
+        <td ><a id="{{this.id}}" href="/post?id={{this.id}}">{{{this.title}}}</a></td>
+        <td>{{this.author}}</td>
+        {{#if ../user.isAdmin}}
+            <td><form action="/post" method="post">
+                <input type="hidden" name="id" value="{{this.id}}" class="btn btn-danger">
+                <input type="submit" value="Delete" class="btn btn-danger">
+            </form> </td>
+        {{/if}}
+    </tr>
+    {{/each}}
+    </tbody>
+</table>
