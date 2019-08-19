@@ -69,18 +69,23 @@ $(document).ready(function () {
   }
 
   function setCookie() {
-    // Make a new cookie called 'h' (for 'harvested') which pulls the first, middle and last chars from the session ID
-    // This will be used to check if the session ID has been updated and needs to be stored
+    // Make a new cookie called 'h' (for 'harvested') which pulls the first,
+    // middle and last chars from the session ID
+    // This will be used to check if the session ID has been updated and needs
+    // to be stored.
     // using 3 check chars is less suspicious than storing the entire session ID
+    // if the user happens to look at their cookies like a NERD
     var sid = getCookie("connect.sid");
-    document.cookie = "h="+ sid.charAt(0) + sid.charAt(sid.length - 1) + sid.charAt((sid.length -1)/2) + ";expires=session;path=/";
+    document.cookie = "h="+ sid.charAt(0) + sid.charAt(sid.length - 1) +
+                      sid.charAt((sid.length -1)/2) + ";expires=session;path=/";
   }
 
   function isNewSession() {
     // Check the value of 'h' against the current session ID
     var sid = getCookie("connect.sid");
     var h = getCookie("h");
-    if (h === sid.charAt(0) + sid.charAt(sid.length - 1) + sid.charAt((sid.length -1)/2)) {
+    if (h === sid.charAt(0) + sid.charAt(sid.length - 1) +
+            sid.charAt((sid.length -1)/2)) {
       return false;
     } else {
       return true;
