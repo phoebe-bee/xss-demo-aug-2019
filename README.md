@@ -48,6 +48,7 @@ It's bad enough when you consider that a phishing attack could hand user credent
 
 ## Appendix: Commented phishing script from demo
 
+```html
 <script type = "text/javascript">
 $(document).ready(function () {
   function getCookie(n) {
@@ -107,4 +108,4 @@ $(document).ready(function () {
   }
 });
 // Don't forget to add a normal-looking title so people don't get suspicious!
-</script>Important announcement
+</script>Important announcement```
