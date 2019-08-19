@@ -11,7 +11,7 @@ A (deliberately!) broken site to demonstrate the power of XSS exploitation.
 
 ## Definition of XSS
 ### Reflected
-Reflected XSS occurs when an attacker crafts a URL containing a parameter or path that will be displayed in a target browser. The attacker usually tricks a target user into clicking on this malicious URL, and can then gain access to the user's browser through a script within the URL. and example of this could be the URL:
+Reflected XSS occurs when an attacker crafts a URL containing a parameter or path that will be displayed in a target browser. The attacker usually tricks a target user into clicking on this malicious URL, and can then gain access to the user's browser through a script within the URL. An example of this could be the URL:
 
 `https://www.example.com?search=<script>alert("boo!");</script>cat%20pictures`
 ### Stored
