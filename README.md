@@ -13,7 +13,7 @@ A (deliberately!) broken site to demonstrate the power of XSS exploitation.
 ### Reflected
 Reflected XSS occurs when an attacker crafts a URL containing a parameter or path that will be displayed in a target browser. The attacker usually tricks a target user into clicking on this malicious URL, and can then gain access to the user's browser through a script within the URL. An example of this could be the URL:
 
-`https://www.example.com?search=<script>alert("boo!");</script>cat%20pictures`
+`https://www.example.com?search=%3Cscript%3Ealert%28%22boo%21%22%29%3B%3C%2Fscript%3Ecat%20pictures` which, unencoded, contains: `https://www.example.com?search=<script>alert("boo!");</script>cat%20pictures`
 ### Stored
 Stored XSS happens when an attacker can directly upload HTML to a site through a user input field whose contents will be displayed elsewhere on the site, such as a username field. If the input is not escaped by the server, there is a risk it will be rendered as HTML, which means outside scripts can be injected into the page.
 
